@@ -21,13 +21,19 @@ fi
 
 ui_print "- 正在为你安装传送门，请稍等~"
 
-pm install -r -f  $NODULE_MIUIContentExtension_APK_PATH
-HAS_BEEN_INSTALLED_MIUIContentExtension_APK=$(pm list packages | grep com.miui.contentextension)
-sleep 6
-if [[ $HAS_BEEN_INSTALLED_MIUIContentExtension_APK == *"package:com.miui.contentextension"* ]]; then
-  ui_print "- 已经完成传送门的安装，正在修补传送门的相关权限~"
-  pm grant com.miui.contentextension android.permission.WRITE_SECURE_SETTINGS
-  ui_print "- 好诶，《HyperOS For Pad 传送门补丁》安装/更新完成，重启系统后生效！"
+unzip -o "$ZIPFILE" 'MIUIContentExtension.apk' -d /data/local/tmp/ &>/dev/null
+if [[ ! -f /data/local/tmp/MIUIContentExtension.apk ]]; then
+  ui_print "- 坏诶，《HyperOS For Pad 传送门补丁》安装失败，无法进行安装！"
 else
-  ui_print "- 坏诶，《HyperOS For Pad 传送门补丁》安装失败，请尝试重新安装！"
+  pm install -r /data/local/tmp/MIUIContentExtension.apk &>/dev/null
+  rm -rf /data/local/tmp/MIUIContentExtension.apk
+  rm -rf "$MODPATH"/MIUIContentExtension.apk
+  HAS_BEEN_INSTALLED_MIUIContentExtension_APK=$(pm list packages | grep com.miui.contentextension)
+  if [[ $HAS_BEEN_INSTALLED_MIUIContentExtension_APK == *"package:com.miui.contentextension"* ]]; then
+    ui_print "- 已经完成传送门的安装，正在修补传送门的相关权限~"
+    pm grant com.miui.contentextension android.permission.WRITE_SECURE_SETTINGS
+    ui_print "- 好诶，《HyperOS For Pad 传送门补丁》安装/更新完成，重启系统后生效！"
+  else
+    ui_print "- 坏诶，《HyperOS For Pad 传送门补丁》安装失败，请尝试重新安装！"
+  fi
 fi
