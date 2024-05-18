@@ -1,7 +1,7 @@
 # shellcheck disable=SC2148
 # shellcheck disable=SC2034
 SKIPUNZIP=0
-source "$MODDIR"/util_functions.sh
+. "$MODPATH"/util_functions.sh
 
 if [[ "$KSU" == "true" ]]; then
   ui_print "- KernelSU 用户空间当前的版本号: $KSU_VER_CODE"
