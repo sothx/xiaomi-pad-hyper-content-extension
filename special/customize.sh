@@ -16,7 +16,7 @@ else
 fi
 
 ui_print "- 正在为你修补传送门的权限，请稍等~"
-patch_permissions
+patch_permissions "$MODPATH"
 
 
 ui_print "- 正在为你安装传送门，请稍等~"

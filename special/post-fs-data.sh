@@ -2,4 +2,4 @@
 
 MODDIR=${0%/*}
 . "$MODDIR"/util_functions.sh
-patch_permissions
+patch_permissions "$MODDIR"

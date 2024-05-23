@@ -1,9 +1,9 @@
 # shellcheck disable=SC2148
 patch_permissions() {
   SYSTEM_PRIVAPP_PERMISSION_PRODUCT_PATH=/system/product/etc/permissions/privapp-permissions-product.xml
-  MODULE_PRIVAPP_PERMISSION_PRODUCT_PATH="$MODDIR"/system/product/etc/permissions/privapp-permissions-product.xml
-  CODE_SNIPPET="$MODDIR"/common/code-snippet.xml
-  MODULE_MIUI_CONTENT_EXTENSION_APK_PATH="$MODDIR"/system/product/priv-app/MIUIContentExtension/MIUIContentExtension.apk
+  MODULE_PRIVAPP_PERMISSION_PRODUCT_PATH="$1"/system/product/etc/permissions/privapp-permissions-product.xml
+  CODE_SNIPPET="$1"/common/code-snippet.xml
+  MODULE_MIUI_CONTENT_EXTENSION_APK_PATH="$1"/system/product/priv-app/MIUIContentExtension/MIUIContentExtension.apk
 
   # 移除旧版补丁文件
   rm -rf "$MODULE_PRIVAPP_PERMISSION_PRODUCT_PATH"
