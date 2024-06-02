@@ -18,3 +18,11 @@ patch_permissions() {
     printf "\n</permissions>\n" >> "$MODULE_PRIVAPP_PERMISSION_PRODUCT_PATH"
   fi
 }
+
+grep_prop() {
+  local REGEX="s/^$1=//p"
+  shift
+  local FILES=$@
+  [ -z "$FILES" ] && FILES='/system/build.prop'
+  cat $FILES 2>/dev/null | dos2unix | sed -n "$REGEX" | head -n 1
+}
